@@ -1,0 +1,40 @@
+
+Certainly! Let's break down the CSS code for the .movie-list class:
+
+css
+Copy code
+.movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+display: grid;: This CSS property specifies that the element with the class .movie-list will be displayed as a grid container. This means its children elements can be laid out in rows and columns.
+grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));: This CSS property defines the number and size of the columns in the grid. Let's break it down further:
+repeat(auto-fill, minmax(200px, 1fr)): This part creates a repeating pattern for the columns. auto-fill tells the browser to automatically fill the available space with as many columns as possible while still adhering to the specified constraints. minmax(200px, 1fr) sets the minimum width of each column to 200 pixels (200px) and the maximum width to a fraction of the available space (1fr). So, each column will be at least 200 pixels wide but can expand to occupy additional available space equally.
+gap: 20px;: This CSS property specifies the size of the gap between grid items. In this case, there will be a 20-pixel gap between each item in the grid.
+Overall, this CSS code creates a responsive grid layout for a list of movies (movie-list class) where the width of each column is flexible, ranging from at least 200 pixels to fill available space (1fr), with a 20-pixel gap between items. This layout will adjust automatically based on the container's width and the number of movies in the list.
+
+
+
+
+ok One more thing i dont understand why i need to include onMovieClick={handleMovieClick} inside the MovieList component ? Aha i see .
+
+Because the selected movie is in null initail state and on click on the movie we call the function
+
+  const handleMovieClick = (movie) => { // Function to handle clicking on a movie in the list
+    setSelectedMovie(movie); // Set the 'selectedMovie' state variable to the clicked movie object
+  };
+
+With this if we have selected movie then the movieDitails component will be displayed with the movie title and the overview?
+ChatGPT
+Yes, you've got it! The onMovieClick prop is used to pass a function (handleMovieClick) from the parent component (in this case, App) to the MovieList component. This function is then called when a movie card is clicked within the MovieList component.
+
+Inside the handleMovieClick function, the clicked movie object is passed as an argument to the setSelectedMovie function, which updates the selectedMovie state with the clicked movie. As a result, when a movie card is clicked, the selectedMovie state is updated with the details of the clicked movie.
+
+In the App component, the MovieDetails component is conditionally rendered based on the selectedMovie state. If a movie is selected (i.e., selectedMovie is not null), the MovieDetails component is displayed, showing the details of the selected movie.
+
+So, in summary:
+
+Clicking on a movie card triggers the handleMovieClick function, updating the selectedMovie state with the details of the clicked movie.
+If a movie is selected (selectedMovie is not null), the MovieDetails component is displayed, showing the details of the selected movie.
+This pattern allows users to click on a movie in the list to view its details in the MovieDetails component, providing an interactive user experience.
